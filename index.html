@@ -69,18 +69,18 @@ table.spec{border-collapse:collapse;width:100%;font-size:.95rem;margin:1rem 0}
 .bar{height:14px;border-radius:2px}
 .ticks{display:flex;justify-content:space-between;font-size:.82rem;color:#9FB0C1;margin-top:.3rem}
 /* FAQ columns */
-.faq-cols{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:1.5rem}
-.faq-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.14);border-radius:6px;overflow:hidden;transition:border-color .2s,background .2s,box-shadow .2s}
+.faq-cols{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start;margin-top:1.5rem}
+.faq-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.14);border-radius:6px;overflow:hidden;align-self:start;transition:border-color .25s ease,background .25s ease,box-shadow .25s ease}
 .faq-card:hover{background:rgba(255,255,255,0.07);border-color:var(--amber)}
-.faq-summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.1rem;cursor:pointer;list-style:none;user-select:none}
+.faq-card[open]{background:rgba(255,255,255,0.06);border-color:var(--amber);box-shadow:0 6px 18px rgba(0,0,0,0.22)}
+.faq-summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.95rem 1.15rem;cursor:pointer;list-style:none;user-select:none}
 .faq-summary::-webkit-details-marker{display:none}
 .faq-summary:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 .faq-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:#fff;margin:0}
-.faq-btn{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--amber);color:var(--amber);background:rgba(224,138,30,0.1);flex-shrink:0;transition:transform .25s ease,background .2s,color .2s}
+.faq-btn{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--amber);color:var(--amber);background:rgba(224,138,30,0.1);flex-shrink:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .25s ease,color .25s ease}
 .faq-card[open] .faq-btn{transform:rotate(45deg);background:var(--amber);color:var(--ink)}
-.faq-content{padding:0 1.1rem 1.1rem;border-top:1px solid rgba(255,255,255,0.08);animation:faqFade .25s ease-out}
-.faq-content p{margin:0.8rem 0 0;font-size:.95rem;line-height:1.6;color:#C5D2DF;max-width:none}
-@keyframes faqFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.faq-content{padding:0 1.15rem 1.15rem;border-top:1px solid rgba(255,255,255,0.08);overflow:hidden;transition:height .3s cubic-bezier(.16,1,.3,1),opacity .25s ease}
+.faq-content p{margin:0.85rem 0 0;font-size:.95rem;line-height:1.65;color:#C5D2DF;max-width:none}
 
 /* sources */
 ol.refs{padding-left:1.3rem;max-width:80ch}ol.refs li{margin-bottom:.7rem;overflow-wrap:anywhere}
@@ -761,7 +761,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 <div class="legend reveal delay-2" id="lg-di" hidden><div class="bar" style="background:linear-gradient(90deg,#053061,#2166AC,#92C5DE,#ffffff22 50%,#F4A582,#B2182B,#67001F)"></div>
 <div class="ticks"><span>−20 cm</span><span>0</span><span>+20 cm</span></div><p style="font-size:.88rem;margin-top:.4rem">Line-of-sight displacement. Opposite colors mean opposite directions of movement along the satellite’s line of sight. Near the fault the movement exceeds this scale.</p></div>
 <div class="faq-cols">
-  <details class="faq-card reveal">
+  <details class="faq-card reveal" name="map-faq">
     <summary class="faq-summary">
       <span class="faq-title">How to read it</span>
       <span class="faq-btn" aria-hidden="true">
@@ -773,7 +773,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
     </div>
   </details>
 
-  <details class="faq-card reveal delay-1">
+  <details class="faq-card reveal delay-1" name="map-faq">
     <summary class="faq-summary">
       <span class="faq-title">What it shows</span>
       <span class="faq-btn" aria-hidden="true">
@@ -785,7 +785,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
     </div>
   </details>
 
-  <details class="faq-card reveal delay-2">
+  <details class="faq-card reveal delay-2" name="map-faq">
     <summary class="faq-summary">
       <span class="faq-title">How we made it</span>
       <span class="faq-btn" aria-hidden="true">
@@ -868,6 +868,60 @@ if('IntersectionObserver' in window){
 } else {
   document.querySelectorAll(".reveal").forEach(function(el){el.classList.add("visible");});
 }
+
+/* FAQ accordion: smooth animation & auto-close sibling cards */
+var faqCards=[].slice.call(document.querySelectorAll(".faq-card"));
+faqCards.forEach(function(card){
+  var summary=card.querySelector(".faq-summary");
+  var content=card.querySelector(".faq-content");
+  if(!summary||!content)return;
+
+  function closeCard(c){
+    var cnt=c.querySelector(".faq-content");
+    if(!c.open||!cnt)return;
+    cnt.style.height=cnt.scrollHeight+"px";
+    cnt.style.opacity="1";
+    requestAnimationFrame(function(){
+      cnt.style.height="0px";
+      cnt.style.opacity="0";
+    });
+    setTimeout(function(){
+      c.open=false;
+      cnt.style.height="";
+      cnt.style.opacity="";
+    },280);
+  }
+
+  function openCard(c){
+    c.open=true;
+    var cnt=c.querySelector(".faq-content");
+    var h=cnt.scrollHeight;
+    cnt.style.height="0px";
+    cnt.style.opacity="0";
+    requestAnimationFrame(function(){
+      cnt.style.height=h+"px";
+      cnt.style.opacity="1";
+    });
+    setTimeout(function(){
+      cnt.style.height="";
+      cnt.style.opacity="";
+    },300);
+  }
+
+  summary.addEventListener("click",function(e){
+    e.preventDefault();
+    if(card.open){
+      closeCard(card);
+    } else {
+      faqCards.forEach(function(other){
+        if(other!==card&&other.open){
+          closeCard(other);
+        }
+      });
+      openCard(card);
+    }
+  });
+});
 
 if(!window.L)return;
 var B=[[31.08353,92.12096],[34.23236,95.93416]],E=[32.381,93.780];
