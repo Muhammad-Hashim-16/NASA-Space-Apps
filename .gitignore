@@ -1,0 +1,8 @@
+# Ignore HDF5 radar data files (large files)
+*.h5
+*.hdf5
+NISAR_L2_UR_GUNW_*.h5
+
+# OS files
+.DS_Store
+Thumbs.db

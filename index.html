@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Nagqu earthquake, seen from space</title>
+<meta name="description" content="Ground deformation of the 22 October 2026 Mw 7.0 Nagqu earthquake, Tibet, measured with NASA-ISRO NISAR radar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<style>
+:root{--ink:#0B1F33;--ink2:#14304D;--paper:#F3F5F7;--line:#D5DCE3;--amber:#E08A1E;--amber-d:#9A5600;--text:#1B2A3A;--sans:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Source Serif 4",Georgia,serif;--nav:52px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 8px)}
+body{margin:0;font:400 1.0625rem/1.65 var(--sans);color:var(--text);background:var(--paper)}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--amber-d)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0 0 .6em}
+h1{font-size:clamp(2.2rem,5.6vw,4rem)}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem)}
+h3{font-size:1.25rem;margin-top:1.6em}
+p{margin:0 0 1em;max-width:64ch}
+sup a{text-decoration:none;font-weight:600;font-size:.8em}
+.wrap{width:min(1100px,100% - 2.5rem);margin-inline:auto}
+section{padding:clamp(3rem,8vw,6rem) 0}
+.dark{background:var(--ink);color:#E6EDF4}
+.dark a{color:#F2B25E}
+.dark h2,.dark h1{color:#fff}
+.split{display:grid;gap:2.5rem;grid-template-columns:1fr}
+@media(min-width:900px){.split{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start}.split.rev{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}}
+/* nav */
+nav{position:sticky;top:0;z-index:1000;height:var(--nav);background:var(--ink);border-bottom:2px solid var(--amber)}
+nav .wrap{display:flex;align-items:center;gap:1.5rem;height:100%}
+nav b{font:600 1rem var(--serif);color:#fff;white-space:nowrap}
+nav ul{display:flex;gap:.25rem;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none;flex:1}
+nav ul::-webkit-scrollbar{display:none}
+nav li a{display:block;padding:.5rem .75rem;color:#C5D2DF;text-decoration:none;font-size:.92rem;white-space:nowrap;border-bottom:2px solid transparent}
+nav li a:hover{color:#fff}
+nav li a.on{color:#fff;border-bottom-color:var(--amber)}
+/* hero */
+#overview{padding-top:clamp(2.5rem,6vw,4.5rem);overflow:hidden}
+#overview .lead{font-size:1.2rem;color:#C5D2DF;max-width:44ch}
+#overview figure{margin:0;animation:in 1.2s ease-out both}
+#overview figure img{border-radius:4px;box-shadow:0 0 0 1px #ffffff22}
+figcaption{font-size:.85rem;color:#6B7C8D;margin-top:.6rem;max-width:64ch}
+.dark figcaption{color:#9FB0C1}
+@keyframes in{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+dl.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.2rem 1.5rem;margin:2rem 0 0;padding-top:1.4rem;border-top:1px solid #ffffff33}
+dl.facts div{border-left:3px solid var(--amber);padding-left:.8rem}
+dl.facts dt{font-size:.85rem;color:#9FB0C1}
+dl.facts dd{margin:0;font:600 1.15rem/1.3 var(--serif);color:#fff}
+dl.facts dd small{display:block;font:400 .82rem var(--sans);color:#9FB0C1}
+/* misc blocks */
+.slot:empty{display:none}
+.slot{margin:1.5rem 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+table.spec{border-collapse:collapse;width:100%;font-size:.95rem;margin:1rem 0}
+.spec th,.spec td{text-align:left;padding:.55rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:600;width:42%;color:var(--ink2)}
+.dark .spec th{color:#C5D2DF}.dark .spec th,.dark .spec td{border-color:#ffffff22}
+.note{border-left:4px solid var(--amber);padding:.4rem 1rem;background:#fff;margin:1.2rem 0;max-width:64ch}
+/* map */
+.controls{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;margin:1.5rem 0 1rem;font-size:.95rem}
+.controls label{display:inline-flex;align-items:center;gap:.4rem;cursor:pointer}
+.controls input[type=radio],.controls input[type=checkbox]{accent-color:var(--amber);width:1.05rem;height:1.05rem}
+.controls input[type=range]{accent-color:var(--amber);width:150px}
+#map-canvas{height:min(72vh,640px);min-height:380px;border-radius:6px;border:1px solid #ffffff33;background:#1c3550}
+.legend{margin:1rem 0 2rem;max-width:520px}
+.bar{height:14px;border-radius:2px}
+.ticks{display:flex;justify-content:space-between;font-size:.82rem;color:#9FB0C1;margin-top:.3rem}
+/* FAQ columns */
+.faq-cols{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:1.5rem}
+.faq-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.14);border-radius:6px;overflow:hidden;transition:border-color .2s,background .2s,box-shadow .2s}
+.faq-card:hover{background:rgba(255,255,255,0.07);border-color:var(--amber)}
+.faq-summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.1rem;cursor:pointer;list-style:none;user-select:none}
+.faq-summary::-webkit-details-marker{display:none}
+.faq-summary:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.faq-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:#fff;margin:0}
+.faq-btn{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--amber);color:var(--amber);background:rgba(224,138,30,0.1);flex-shrink:0;transition:transform .25s ease,background .2s,color .2s}
+.faq-card[open] .faq-btn{transform:rotate(45deg);background:var(--amber);color:var(--ink)}
+.faq-content{padding:0 1.1rem 1.1rem;border-top:1px solid rgba(255,255,255,0.08);animation:faqFade .25s ease-out}
+.faq-content p{margin:0.8rem 0 0;font-size:.95rem;line-height:1.6;color:#C5D2DF;max-width:none}
+@keyframes faqFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* sources */
+ol.refs{padding-left:1.3rem;max-width:80ch}ol.refs li{margin-bottom:.7rem;overflow-wrap:anywhere}
+
+/* footer with light background */
+footer{background:var(--paper);color:var(--text);border-top:1px solid var(--line);font-size:.88rem;padding:2rem 0}
+footer p{max-width:none;margin:.35rem 0;color:#5A6D80}
+footer strong{color:var(--ink)}
+
+/* arrow in bottom-left corner, always pointing up */
+#next{position:fixed;left:1.2rem;bottom:1.2rem;z-index:1001;width:46px;height:46px;border-radius:50%;border:2px solid var(--amber);background:var(--ink);color:var(--amber);cursor:pointer;display:grid;place-items:center;padding:0;box-shadow:0 4px 14px rgba(11,31,51,0.25);transition:opacity .3s,transform .2s,background .2s;opacity:0;pointer-events:none}
+#next.show{opacity:1;pointer-events:auto}
+#next:hover{transform:translateY(-3px);background:var(--ink2);color:#fff}
+#next svg{width:22px;height:22px;animation:hop 2.5s ease-in-out infinite}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* Professional scroll-driven reveal animation */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
+.reveal.visible{opacity:1;transform:none}
+.delay-1{transition-delay:.1s}
+.delay-2{transition-delay:.2s}
+.delay-3{transition-delay:.3s}
+
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#overview figure,#next svg,.reveal{animation:none !important;transition:none !important;opacity:1 !important;transform:none !important}}
+@media(max-width:600px){nav b{display:none}#next{width:42px;height:42px;left:1rem;bottom:1rem}}
+</style>
+</head>
+<body>
+<nav aria-label="Page sections"><div class="wrap"><b>Nagqu 2026</b>
+<ul>
+<li><a href="#overview">Overview</a></li><li><a href="#earthquake">Earthquakes</a></li><li><a href="#nisar">NISAR</a></li>
+<li><a href="#data">Study area and data</a></li><li><a href="#map">Map</a></li><li><a href="#limits">Limitations</a></li><li><a href="#sources">Sources</a></li>
+</ul></div></nav>
+
+<main>
+<section id="overview" class="dark"><div class="wrap split reveal">
+<div>
+<h1>The Nagqu earthquake, seen from space</h1>
+<p class="lead">How NASA-ISRO’s NISAR radar satellite measured the ground movement of a magnitude 7.0 earthquake on the Tibetan Plateau.</p>
+<dl class="facts reveal delay-1">
+<div><dt>Magnitude</dt><dd>Mw 7.0</dd></div>
+<div><dt>Date and time</dt><dd>22 Oct 2026<small>14:33 UTC, 22:33 local (UTC+8)</small></dd></div>
+<div><dt>Depth</dt><dd>18 km</dd></div>
+<div><dt>Epicentre</dt><dd>32.381° N, 93.780° E<small>about 191 km ENE of Nagqu</small></dd></div>
+</dl>
+<p style="margin-top:1rem;font-size:.85rem;color:#9FB0C1">Event details: USGS<sup><a href="#r4">4</a></sup></p>
+</div>
+<figure class="reveal delay-2"><img src="web%20images/fringes.webp" alt="Interferogram of the Nagqu earthquake: colored fringes wrapping tightly around the epicentre" width="1200" height="991">
+<figcaption>Interferogram from NISAR data, 19 to 31 October 2026. Each full color cycle is about 12 cm of ground movement toward or away from the satellite.</figcaption></figure>
+</div></section>
+
+<section id="earthquake"><div class="wrap">
+<div class="split reveal"><div>
+<h2 style="margin-top:0">Understanding earthquakes</h2>
+<p>An earthquake is a natural phenomenon in which the ground shakes due to the sudden release of energy within the Earth.</p>
+<p>Earth has four main layers: the crust, mantle, outer core, and inner core. The crust and the rigid uppermost part of the mantle together form the lithosphere, which is divided into large sections called tectonic plates.</p>
+<p>These plates move slowly over geological time due to processes within the mantle. Their movement creates stress along faults (fractures in Earth’s crust). When the accumulated stress exceeds the strength of the rocks, they suddenly slip, releasing energy in the form of seismic waves. These waves travel through the Earth and cause the ground shaking we experience as an earthquake.<sup><a href="#r1">1</a></sup></p>
+</div>
+<div id="tectonic-illustration" class="slot" style="margin-top:0">
+<style>
+#tectonic-illustration {
+  background: #FFFFFF;
+  color: var(--text);
+  font-family: var(--sans);
+}
+#tectonic-illustration .ti-wrap {
+  padding: 1.25rem;
+}
+#tectonic-illustration .ti-header {
+  margin-bottom: 0.85rem;
+}
+#tectonic-illustration .ti-title {
+  font-family: var(--serif);
+  font-size: 1.18rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 0.25rem;
+  line-height: 1.25;
+}
+#tectonic-illustration .ti-subtitle {
+  font-size: 0.88rem;
+  color: #5A6D80;
+  margin: 0;
+  line-height: 1.45;
+  max-width: none;
+}
+#tectonic-illustration .ti-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+}
+#tectonic-illustration .ti-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 0.85rem/1.25 var(--sans);
+  background: #FFFFFF;
+  color: var(--ink2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.55rem 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  min-height: 42px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+#tectonic-illustration .ti-tab:hover {
+  background: var(--paper);
+  border-color: var(--ink2);
+  color: var(--ink);
+}
+#tectonic-illustration .ti-tab[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #FFFFFF;
+}
+#tectonic-illustration .ti-tab:focus-visible,
+#tectonic-illustration .ti-play-btn:focus-visible,
+#tectonic-illustration input[type=range]:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+#tectonic-illustration .ti-figure-wrap {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+#tectonic-illustration svg.ti-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: pan-y;
+}
+#tectonic-illustration text {
+  font-family: var(--sans);
+  user-select: none;
+}
+#tectonic-illustration .ti-label {
+  font-size: 17px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+#tectonic-illustration .ti-arrow {
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  fill: none;
+}
+#tectonic-illustration .ti-fault {
+  stroke: var(--amber);
+  stroke-width: 4;
+  stroke-dasharray: 6 4;
+  fill: none;
+}
+#tectonic-illustration .ti-slider-wrap {
+  margin-top: 0.85rem;
+}
+#tectonic-illustration .ti-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.35rem;
+}
+#tectonic-illustration .ti-slider-label {
+  font: 600 0.85rem/1.3 var(--sans);
+  color: var(--ink2);
+}
+#tectonic-illustration .ti-motion-val {
+  font: 600 0.85rem/1.3 var(--sans);
+  color: var(--amber-d);
+}
+#tectonic-illustration .ti-slider-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+#tectonic-illustration .ti-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: 600 0.82rem/1 var(--sans);
+  background: var(--paper);
+  color: var(--ink2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.45rem 0.65rem;
+  cursor: pointer;
+  min-height: 36px;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+#tectonic-illustration .ti-play-btn:hover {
+  background: #E6EDF4;
+  border-color: var(--ink2);
+  color: var(--ink);
+}
+#tectonic-illustration input[type=range] {
+  flex: 1;
+  height: 1.5rem;
+  accent-color: var(--amber);
+  cursor: ew-resize;
+  margin: 0;
+}
+#tectonic-illustration .ti-caption {
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--paper);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text);
+  min-height: 5.2rem;
+}
+#tectonic-illustration .ti-caption strong {
+  color: var(--ink);
+}
+#tectonic-illustration .ti-hint {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #6B7C8D;
+  margin: 0.65rem 0 0;
+  max-width: none;
+}
+@media (min-width: 500px) and (max-width: 899px) {
+  #tectonic-illustration .ti-tabs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  #tectonic-illustration .ti-wrap {
+    padding: 0.85rem 0.75rem;
+  }
+  #tectonic-illustration .ti-tab {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.35rem;
+  }
+  #tectonic-illustration .ti-slider-controls {
+    gap: 0.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #tectonic-illustration * {
+    animation: none !important;
+    transition: none !important;
+  }
+  #tectonic-illustration .ti-play-btn {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+</style>
+
+<div class="ti-wrap">
+  <div class="ti-header">
+    <h3 class="ti-title">Tectonic plate boundaries</h3>
+    <p class="ti-subtitle">Select a boundary regime and adjust displacement to observe lithospheric deformation.</p>
+  </div>
+
+  <div class="ti-tabs" role="group" aria-label="Plate boundary type">
+    <button type="button" class="ti-tab" data-kind="collision" aria-pressed="true">Continental collision</button>
+    <button type="button" class="ti-tab" data-kind="subduction" aria-pressed="false">Subduction</button>
+    <button type="button" class="ti-tab" data-kind="transform" aria-pressed="false">Transform fault</button>
+    <button type="button" class="ti-tab" data-kind="divergent" aria-pressed="false">Divergent boundary</button>
+  </div>
+
+  <div class="ti-figure-wrap">
+    <svg id="ti-scene" viewBox="0 0 900 440" role="img" aria-labelledby="ti-svg-title ti-svg-desc" class="ti-scene">
+      <title id="ti-svg-title">Cross-section illustration of tectonic plate boundaries</title>
+      <desc id="ti-svg-desc">Cross-section showing tectonic boundary dynamics.</desc>
+      <defs>
+        <marker id="ti-arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0 1L7 4L0 7Z" fill="#0B1F33"/>
+        </marker>
+        <marker id="ti-arr-amber" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0 1L7 4L0 7Z" fill="#9A5600"/>
+        </marker>
+      </defs>
+      <rect width="900" height="440" fill="#F3F5F7"/>
+      <rect y="205" width="900" height="235" fill="#F8EADC"/>
+      <line x1="0" y1="205" x2="900" y2="205" stroke="#D5DCE3" stroke-width="1.5"/>
+      <text x="24" y="36" fill="#14304D" font-size="13" font-weight="600" letter-spacing="0.5">EARTH'S SURFACE (CROSS-SECTION)</text>
+      <text x="24" y="420" fill="#9A5600" font-size="14" font-weight="600" letter-spacing="0.5">UPPER MANTLE (ASTHENOSPHERE)</text>
+      <text x="24" y="226" fill="#9A5600" font-size="12" font-weight="600" opacity="0.85">Lithosphere base</text>
+      <g id="ti-plates"></g>
+      <g id="ti-features"></g>
+      <g id="ti-motion-arrows"></g>
+    </svg>
+  </div>
+
+  <div class="ti-slider-wrap">
+    <div class="ti-slider-header">
+      <label for="ti-motion" id="ti-slider-label" class="ti-slider-label">Plate displacement</label>
+      <output id="ti-motion-val" for="ti-motion" class="ti-motion-val" aria-live="off">50%</output>
+    </div>
+    <div class="ti-slider-controls">
+      <button type="button" id="ti-play-btn" class="ti-play-btn" aria-label="Animate plate motion" title="Animate plate motion">
+        <svg class="ti-play-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><polygon points="6,4 20,12 6,20"/></svg>
+        <svg class="ti-pause-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" style="display:none"><rect x="5" y="4" width="4" height="16"/><rect x="15" y="4" width="4" height="16"/></svg>
+        <span class="ti-play-text">Animate</span>
+      </button>
+      <input id="ti-motion" type="range" min="0" max="100" value="50" step="1" aria-labelledby="ti-slider-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% relative displacement">
+    </div>
+  </div>
+
+  <div id="ti-explanation" class="ti-caption" role="status" aria-live="polite"></div>
+
+  <p class="ti-hint">Schematic cross-section for conceptual illustration; not to scale. Tectonic plates typically move at centimeters per year; displacement here is exaggerated to demonstrate boundary mechanics.</p>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById("tectonic-illustration");
+  if (!root) return;
+
+  var NS = "http://www.w3.org/2000/svg";
+  var plates = root.querySelector("#ti-plates");
+  var features = root.querySelector("#ti-features");
+  var arrows = root.querySelector("#ti-motion-arrows");
+  var slider = root.querySelector("#ti-motion");
+  var output = root.querySelector("#ti-motion-val");
+  var explanation = root.querySelector("#ti-explanation");
+  var desc = root.querySelector("#ti-svg-desc");
+  var buttons = Array.prototype.slice.call(root.querySelectorAll(".ti-tab"));
+  var playBtn = root.querySelector("#ti-play-btn");
+  var playIcon = playBtn ? playBtn.querySelector(".ti-play-icon") : null;
+  var pauseIcon = playBtn ? playBtn.querySelector(".ti-pause-icon") : null;
+  var playText = playBtn ? playBtn.querySelector(".ti-play-text") : null;
+
+  var kind = "collision";
+  var animId = null;
+  var animDirection = 1;
+  var motionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+
+  function node(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) {
+      if (Object.prototype.hasOwnProperty.call(attrs, k)) {
+        e.setAttribute(k, attrs[k]);
+      }
+    }
+    parent.appendChild(e);
+    return e;
+  }
+
+  function text(parent, x, y, str, attrs) {
+    attrs = attrs || {};
+    attrs.x = x;
+    attrs.y = y;
+    var e = node("text", attrs, parent);
+    e.textContent = str;
+    return e;
+  }
+
+  function clear(el) {
+    while (el.firstChild) {
+      el.removeChild(el.firstChild);
+    }
+  }
+
+  var descriptions = {
+    collision: "<strong>Convergent boundary (continental collision):</strong> Two continental plates converge. The crust is compressed and thickened, which can build mountains. Stress can accumulate along faults and cause earthquakes.",
+    subduction: "<strong>Convergent boundary (subduction):</strong> A denser oceanic plate bends and sinks beneath another plate. Friction and sudden slipping along this boundary can generate earthquakes; melting can also feed volcanoes.",
+    transform: "<strong>Transform boundary:</strong> Two plates slide horizontally past one another along a fault zone. Parts of the fault may become locked by friction, allowing stress to build until rocks suddenly slip and produce an earthquake.",
+    divergent: "<strong>Divergent boundary:</strong> Two plates move away from each other. Hot mantle material rises into the gap and cools to form new crust, often at mid-ocean ridges or rift valleys."
+  };
+
+  var summaries = {
+    collision: "Continental collision: two continental plates converge, compressing crust and uplifting mountains.",
+    subduction: "Subduction zone: denser oceanic plate sinks beneath continental plate into mantle, with volcanic arc.",
+    transform: "Transform boundary: two plates slide horizontally past each other along a vertical fault zone.",
+    divergent: "Divergent boundary: plates pull apart at a rift axis as mantle upwells to form new crust."
+  };
+
+  function draw() {
+    clear(plates);
+    clear(features);
+    clear(arrows);
+
+    var t = Number(slider.value) / 100;
+    var inward = 12 + t * 48;
+    var vertical = t * 34;
+
+    var plateA = "#14304D";
+    var plateB = "#36587B";
+    var strokeNavy = "#0B1F33";
+
+    if (kind === "collision") {
+      node("path", {
+        d: "M0 170 L" + (405 - inward/2) + " 170 L" + (405 - inward/2) + " 210 L0 210Z",
+        fill: plateA, stroke: strokeNavy, "stroke-width": "2"
+      }, plates);
+      node("path", {
+        d: "M" + (495 + inward/2) + " 170 L900 170 L900 210 L" + (495 + inward/2) + " 210Z",
+        fill: plateB, stroke: strokeNavy, "stroke-width": "2"
+      }, plates);
+      node("path", {
+        d: "M" + (405 - inward/2) + " 170 Q450 " + (120 - vertical) + " " + (495 + inward/2) + " 170 L" + (495 + inward/2) + " 210 L" + (405 - inward/2) + " 210Z",
+        fill: "#224468", stroke: strokeNavy, "stroke-width": "2"
+      }, features);
+      node("path", {
+        d: "M" + (405 - inward/2) + " 170 Q450 " + (120 - vertical) + " " + (495 + inward/2) + " 170",
+        fill: "none", stroke: strokeNavy, "stroke-width": "3"
+      }, features);
+      node("path", {
+        d: "M" + (300 - inward) + " 115 L" + (390 - inward/2) + " 115",
+        class: "ti-arrow", "marker-end": "url(#ti-arr)"
+      }, arrows);
+      node("path", {
+        d: "M" + (600 + inward) + " 115 L" + (510 + inward/2) + " 115",
+        class: "ti-arrow", "marker-end": "url(#ti-arr)"
+      }, arrows);
+      text(features, 450, 62, "Crust crumples and mountains rise", {"text-anchor": "middle", class: "ti-label"});
+      text(features, 180, 190, "Continental Plate 1", {fill: "#FFFFFF", "font-size": "15", "font-weight": "600", "text-anchor": "middle", "dominant-baseline": "middle"});
+      text(features, 720, 190, "Continental Plate 2", {fill: "#FFFFFF", "font-size": "15", "font-weight": "600", "text-anchor": "middle", "dominant-baseline": "middle"});
+    } else if (kind === "subduction") {
+      node("path", {
+        d: "M0 170 L" + (400 - inward/2) + " 170 L" + (720 + vertical) + " 330 L" + (700 + vertical) + " 350 L" + (385 - inward/2) + " 210 L0 210Z",
+        fill: plateA, stroke: strokeNavy, "stroke-width": "2"
+      }, plates);
+      node("path", {
+        d: "M" + (500 + inward/2) + " 170 L900 170 L900 210 L" + (500 + inward/2) + " 210Z",
+        fill: plateB, stroke: strokeNavy, "stroke-width": "2"
+      }, plates);
+      node("path", {
+        d: "M" + (400 - inward/2) + " 170 Q450 150 " + (500 + inward/2) + " 170",
+        fill: "none", stroke: strokeNavy, "stroke-width": "3"
+      }, features);
+      node("path", {
+        d: "M" + (590 + vertical/2) + " 155 Q" + (620 + vertical/2) + " 90 " + (650 + vertical/2) + " 155",
+        fill: "none", stroke: "#E08A1E", "stroke-width": "4"
+      }, features);
+      node("path", {
+        d: "M170 115 L300 115",
+        class: "ti-arrow", "marker-end": "url(#ti-arr)"
+      }, arrows);
+      node("path", {
+        d: "M730 115 L600 115",
+        class: "ti-arrow", "marker-end": "url(#ti-arr)"
+      }, arrows);
+      text(features, 620, 62, "Volcanic arc / magma ascent", {"text-anchor": "middle", class: "ti-label"});
+      text(features, 530, 275, "Descending oceanic plate", {fill: "#FFFFFF", "font-size": "14", "font-weight": "600"});
+      text(features, 180, 190, "Oceanic lithosphere", {fill: "#FFFFFF", "font-size": "15", "font-weight": "600", "text-anchor": "middle", "dominant-baseline": "middle"});
+      text(features, 720, 190, "Overriding plate", {fill: "#FFFFFF", "font-size": "15", "font-weight": "600", "text-anchor": "middle", "dominant-baseline": "middle"});
+    } else if (kind === "transform") {
+      var shift = t * 42;
+      node("path", {
+        d: "M0 " + (170 - shift/2) + " L440 " + (170 - shift/2) + " L440 " + (210 - shift/2) + " L0 " + (210 - shift/2) + "Z",
+        fill: plateA, stroke: strokeNavy, "stroke-width": "2"
+      }, plates);
+      node("path", {
+        d: "M460 " + (170 + shift/2) + " L900 " + (170 + shift/2) + " L900 " + (210 + shift/2) + " L460 " + (210 + shift/2) + "Z",
+        fill: plateB, stroke: strokeNavy, "stroke-width": "2"
+      }, plates);
+      node("path", {
+        d: "M450 140 L450 240",
+        class: "ti-fault"
+      }, features);
+      node("path", {
+        d: "M180 " + (110 - shift/2) + " L330 " + (110 - shift/2),
+        class: "ti-arrow", "marker-end": "url(#ti-arr)"
+      }, arrows);
+      node("path", {
+        d: "M720 " + (265 + shift/2) + " L570 " + (265 + shift/2),
+        class: "ti-arrow", "marker-end": "url(#ti-arr)"
+      }, arrows);
+      text(features, 450, 62, "Strike-slip fault (lateral shear)", {"text-anchor": "middle", class: "ti-label"});
+      text(features, 200, 190 - shift/2, "Plate moving left", {fill: "#FFFFFF", "font-size": "15", "font-weight": "600", "text-anchor": "middle", "dominant-baseline": "middle"});
+      text(features, 700, 190 + shift/2, "Plate moving right", {fill: "#FFFFFF", "font-size": "15", "font-weight": "600", "text-anchor": "middle", "dominant-baseline": "middle"});
+    } else if (kind === "divergent") {
+      var gap = 15 + t * 90;
+      node("path", {
+        d: "M0 170 L" + (450 - gap/2) + " 170 L" + (450 - gap/2 - 12) + " 210 L0 210Z",
+        fill: plateA, stroke: strokeNavy, "stroke-width": "2"
+      }, plates);
+      node("path", {
+        d: "M" + (450 + gap/2) + " 170 L900 170 L900 210 L" + (450 + gap/2 + 12) + " 210Z",
+        fill: plateB, stroke: strokeNavy, "stroke-width": "2"
+      }, plates);
+      node("path", {
+        d: "M" + (450 - gap/2) + " 170 Q450 " + (220 + vertical) + " " + (450 + gap/2) + " 170",
+        fill: "#E08A1E", stroke: "#9A5600", "stroke-width": "2"
+      }, features);
+      node("path", {
+        d: "M" + (450 - gap/2 - 10) + " 115 L" + (330 - gap/2) + " 115",
+        class: "ti-arrow", "marker-end": "url(#ti-arr)"
+      }, arrows);
+      node("path", {
+        d: "M" + (450 + gap/2 + 10) + " 115 L" + (570 + gap/2) + " 115",
+        class: "ti-arrow", "marker-end": "url(#ti-arr)"
+      }, arrows);
+      node("path", {
+        d: "M450 " + (320 + vertical/2) + " L450 " + (220 + vertical/3),
+        stroke: "#9A5600", "stroke-width": "3", fill: "none", "marker-end": "url(#ti-arr-amber)"
+      }, arrows);
+      text(features, 450, 62, "Plates move apart; magma rises", {"text-anchor": "middle", class: "ti-label"});
+      text(features, 180, 190, "Separating Plate 1", {fill: "#FFFFFF", "font-size": "15", "font-weight": "600", "text-anchor": "middle", "dominant-baseline": "middle"});
+      text(features, 720, 190, "Separating Plate 2", {fill: "#FFFFFF", "font-size": "15", "font-weight": "600", "text-anchor": "middle", "dominant-baseline": "middle"});
+    }
+
+    explanation.innerHTML = descriptions[kind];
+    if (desc) desc.textContent = summaries[kind];
+    output.value = slider.value + "%";
+    output.textContent = slider.value + "%";
+    slider.setAttribute("aria-valuenow", slider.value);
+    slider.setAttribute("aria-valuetext", slider.value + "% relative displacement");
+  }
+
+  function stopAnimation() {
+    if (animId) {
+      cancelAnimationFrame(animId);
+      animId = null;
+    }
+    if (playBtn) {
+      playBtn.setAttribute("aria-label", "Animate plate motion");
+      playBtn.setAttribute("title", "Animate plate motion");
+      if (playIcon) playIcon.style.display = "";
+      if (pauseIcon) pauseIcon.style.display = "none";
+      if (playText) playText.textContent = "Animate";
+    }
+  }
+
+  function startAnimation() {
+    if (motionQuery && motionQuery.matches) {
+      stopAnimation();
+      return;
+    }
+    if (playBtn) {
+      playBtn.setAttribute("aria-label", "Pause animation");
+      playBtn.setAttribute("title", "Pause animation");
+      if (playIcon) playIcon.style.display = "none";
+      if (pauseIcon) pauseIcon.style.display = "";
+      if (playText) playText.textContent = "Pause";
+    }
+    var lastTime = performance.now();
+    function step(now) {
+      var dt = (now - lastTime) / 1000;
+      lastTime = now;
+      var val = parseFloat(slider.value);
+      val += animDirection * (dt * 30);
+      if (val >= 100) {
+        val = 100;
+        animDirection = -1;
+      } else if (val <= 0) {
+        val = 0;
+        animDirection = 1;
+      }
+      slider.value = Math.round(val);
+      draw();
+      animId = requestAnimationFrame(step);
+    }
+    animId = requestAnimationFrame(step);
+  }
+
+  function toggleAnimation() {
+    if (animId) {
+      stopAnimation();
+    } else {
+      startAnimation();
+    }
+  }
+
+  function checkReducedMotion() {
+    if (motionQuery && motionQuery.matches) {
+      stopAnimation();
+      if (playBtn) {
+        playBtn.disabled = true;
+        playBtn.setAttribute("aria-disabled", "true");
+        playBtn.title = "Motion disabled by prefers-reduced-motion preference";
+      }
+    } else {
+      if (playBtn) {
+        playBtn.disabled = false;
+        playBtn.removeAttribute("aria-disabled");
+        playBtn.title = animId ? "Pause animation" : "Animate plate motion";
+      }
+    }
+  }
+
+  buttons.forEach(function(b) {
+    b.addEventListener("click", function() {
+      kind = b.getAttribute("data-kind");
+      buttons.forEach(function(x) {
+        x.setAttribute("aria-pressed", String(x === b));
+      });
+      slider.value = 50;
+      animDirection = 1;
+      draw();
+    });
+  });
+
+  slider.addEventListener("input", function() {
+    if (animId) stopAnimation();
+    draw();
+  });
+
+  if (playBtn) {
+    playBtn.addEventListener("click", function() {
+      toggleAnimation();
+    });
+  }
+
+  if (motionQuery) {
+    if (motionQuery.addEventListener) {
+      motionQuery.addEventListener("change", checkReducedMotion);
+    } else if (motionQuery.addListener) {
+      motionQuery.addListener(checkReducedMotion);
+    }
+    checkReducedMotion();
+  }
+
+  draw();
+})();
+</script>
+</div></div>
+<div class="split reveal" style="margin-top:3rem;align-items:start"><div>
+<h3 style="margin-top:0">Why analysing earthquakes matters</h3>
+<p>Earthquakes vary in magnitude, and larger earthquakes can have devastating consequences, including loss of life and widespread destruction. Early reports of the Nagqu earthquake counted at least 16 deaths.<sup><a href="#r7">7</a></sup> Understanding tectonic activity and monitoring earthquake-related changes are essential for assessing hazards and reducing their impacts.</p>
+<p>Earthquakes can move the Earth’s surface, sometimes by just a few centimeters. Observing these changes across large and remote regions with ground-based instruments alone is challenging. This is where satellite technology becomes valuable.</p>
+</div>
+<figure style="margin:0"><img src="web%20images/earthquake.jpg" alt="Earthquake damage with collapsed buildings and debris" width="1200" height="800" loading="lazy" style="border-radius:4px;box-shadow:0 0 0 1px #00000018">
+<figcaption>Structural destruction following severe seismic shaking. Surface displacement and sudden ground release cause devastation to buildings and infrastructure.</figcaption></figure>
+</div>
+</div></section>
+
+<section id="nisar" class="dark"><div class="wrap reveal">
+<h2>How NISAR works</h2>
+<div class="split rev"><div>
+<p>NISAR (NASA-ISRO Synthetic Aperture Radar) is an Earth-observing satellite mission that uses active remote sensing to study changes on Earth’s surface. Unlike optical satellites that rely on sunlight reflected from the ground, NISAR generates its own microwave signals and sends them toward Earth. A portion of the energy is reflected back to the satellite, where it is recorded.</p>
+<p>NISAR uses Synthetic Aperture Radar (SAR), which combines radar measurements collected along the satellite’s flight path to create high-resolution images. Because radar works in the microwave part of the spectrum, it can observe during both day and night and through clouds, which makes it useful for remote regions and natural disasters. The returned signals carry information about surface roughness, structure, geometry, and moisture.<sup><a href="#r2">2</a></sup></p>
+<p>For earthquakes, scientists use Interferometric SAR (InSAR). By comparing the phase of radar signals from two acquisitions, they can detect subtle ground displacement, potentially down to centimeter-scale changes under suitable conditions. NISAR cannot predict when an earthquake will occur, but it shows how Earth’s surface responds to one.</p>
+</div>
+<div>
+<figure style="margin:0"><img src="web%20images/NASAR%20SC_White_05112022.png" alt="Artist’s concept of the NISAR spacecraft with its large reflector antenna" width="800" height="600" loading="lazy">
+<figcaption>Artist’s concept of the NISAR spacecraft. Credit: NASA/JPL-Caltech.</figcaption></figure>
+<table class="spec"><caption class="sr" style="position:absolute;left:-999px">NISAR mission facts</caption>
+<tr><th>Launched</th><td>30 July 2025</td></tr>
+<tr><th>Orbit altitude</th><td>747 km</td></tr>
+<tr><th>Repeat cycle</th><td>12 days</td></tr>
+<tr><th>L-band wavelength</th><td>24 cm</td></tr>
+<tr><th>Data access</th><td>Free and open</td></tr></table>
+<p style="font-size:.85rem;color:#9FB0C1">Source: NASA mission overview<sup><a href="#r3">3</a></sup></p>
+</div></div></div></section>
+
+<section id="data"><div class="wrap split reveal">
+<div>
+<h2>Study area and data</h2>
+<p>We selected a region of the Tibetan Plateau covering 31.88°–32.88° N and 93.28°–94.28° E. It was chosen after the magnitude 7.0 earthquake of 22 October 2026, which lies near its center at a depth of about 18 km.<sup><a href="#r4">4</a></sup> The region is tectonically active, so the event is a good case for studying earthquake-related surface deformation with NISAR.</p>
+<p>We searched ASF Vertex for NISAR data covering the study area around the earthquake date. Several Geocoded Unwrapped Interferogram (GUNW) files were available. We selected the pair whose acquisitions fall on 19 and 31 October 2026. It spans the earthquake: the first acquisition is about 2.7 days before it and the second about 9.4 days after.<sup><a href="#r5">5</a></sup></p>
+</div>
+<div>
+<table class="spec">
+<tr><th>Product</th><td>NISAR L2 GUNW<sup><a href="#r6">6</a></sup></td></tr>
+<tr><th>First acquisition</th><td>19 Oct 2026, 22:58 UTC</td></tr>
+<tr><th>Second acquisition</th><td>31 Oct 2026, 22:58 UTC</td></tr>
+<tr><th>Pass</th><td>Ascending, track 112, frame 18</td></tr>
+<tr><th>Polarization</th><td>HH</td></tr>
+<tr><th>Grid spacing</th><td>80 m</td></tr>
+<tr><th>Processing</th><td>JPL, “Urgent” type, version 1.0.11</td></tr></table>
+</div></div></section>
+
+<section id="map" class="dark"><div class="wrap">
+<h2>Ground movement around the epicentre</h2>
+<p>The map shows the full radar frame. The dashed box is our study area. Switch layers, change transparency, and zoom in to the fault zone.</p>
+<div class="controls reveal" role="group" aria-label="Map controls">
+<label><input type="radio" name="lyr" value="fr" checked> Fringes</label>
+<label><input type="radio" name="lyr" value="di"> Displacement</label>
+<label><input type="radio" name="lyr" value="off"> Basemap only</label>
+<label>Transparency <input id="op" type="range" min="0.2" max="1" step="0.05" value="0.85" aria-label="Layer opacity"></label>
+<label><input id="box" type="checkbox" checked> Study area</label></div>
+<div id="map-canvas" class="reveal delay-1" role="application" aria-label="Interactive map of NISAR ground deformation"></div>
+<div class="legend reveal delay-2" id="lg-fr"><div class="bar" style="background:linear-gradient(90deg,#30123B,#4662D7,#36AAF9,#1AE4B6,#72FE5E,#C7EF34,#FABA39,#F66B19,#CA2A04,#7A0403)"></div>
+<div class="ticks"><span>−π</span><span>0</span><span>+π</span></div><p style="font-size:.88rem;margin-top:.4rem">Phase change. One full color cycle is about 12 cm of line-of-sight movement.</p></div>
+<div class="legend reveal delay-2" id="lg-di" hidden><div class="bar" style="background:linear-gradient(90deg,#053061,#2166AC,#92C5DE,#ffffff22 50%,#F4A582,#B2182B,#67001F)"></div>
+<div class="ticks"><span>−20 cm</span><span>0</span><span>+20 cm</span></div><p style="font-size:.88rem;margin-top:.4rem">Line-of-sight displacement. Opposite colors mean opposite directions of movement along the satellite’s line of sight. Near the fault the movement exceeds this scale.</p></div>
+<div class="faq-cols">
+  <details class="faq-card reveal">
+    <summary class="faq-summary">
+      <span class="faq-title">How to read it</span>
+      <span class="faq-btn" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+    </summary>
+    <div class="faq-content">
+      <p>The satellite measures only movement along its line of sight, the direction from the ground to the radar. Fringes are the colored bands: the tighter they are packed, the faster the ground changed over a short distance.</p>
+    </div>
+  </details>
+
+  <details class="faq-card reveal delay-1">
+    <summary class="faq-summary">
+      <span class="faq-title">What it shows</span>
+      <span class="faq-btn" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+    </summary>
+    <div class="faq-content">
+      <p>Dense fringes wrap around the epicentre, and the ground on the two sides of it moved in opposite directions relative to the satellite. Far from the fault the picture is quiet, with residual noise of about 1.5 cm. The small blank area near the epicentre has no usable phase.</p>
+    </div>
+  </details>
+
+  <details class="faq-card reveal delay-2">
+    <summary class="faq-summary">
+      <span class="faq-title">How we made it</span>
+      <span class="faq-btn" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+    </summary>
+    <div class="faq-content">
+      <p>We masked pixels with coherence below 0.3 or failed unwrapping, removed a smooth trend fitted to areas more than 100 km from the epicentre, and converted phase to displacement using the 24 cm wavelength. The blank diagonal strip is a gap in the product.</p>
+    </div>
+  </details>
+</div>
+</div></section>
+
+<section id="limits"><div class="wrap reveal">
+<h2>Limitations</h2>
+<div class="note"><p style="margin:0">This is a student analysis of a rapid-response product. It is not an official deformation model and should not be used for emergency decisions.</p></div>
+<ul style="max-width:64ch;padding-left:1.2rem">
+<li>One ascending pair gives one viewing direction. Vertical and east-west motion cannot be separated.</li>
+<li>The 12-day pair includes aftershocks and about nine days of later movement, not only the mainshock.</li>
+<li>The ionosphere estimate in the product showed a sharp feature at the epicentre, so we did not apply it. Troposphere corrections were not applied either.</li>
+<li>Movement very close to the fault is too large for the color scales, and the radar signal is lost in places.</li>
+<li>We have not compared the result with ground measurements or published models.</li></ul>
+<p>Next steps: add a descending pass, apply atmospheric corrections, and track pixel offsets near the fault.</p>
+</div></section>
+
+<section id="sources" class="dark"><div class="wrap reveal">
+<h2>Sources and credits</h2>
+<ol class="refs">
+<li id="r1">NASA Space Place, <a href="https://spaceplace.nasa.gov/earthquakes/en/">Earthquakes</a>.</li>
+<li id="r2">NASA Science, <a href="https://science.nasa.gov/mission/nisar/">NISAR mission</a>.</li>
+<li id="r3">NASA Science, <a href="https://science.nasa.gov/mission/nisar/mission-overview/">NISAR mission overview</a> (launch date, orbit, repeat cycle, wavelength).</li>
+<li id="r4">USGS Earthquake Hazards Program, <a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000u43g">event us6000u43g</a>, M 7.0 near Nagqu, Tibet.</li>
+<li id="r5">Alaska Satellite Facility (ASF DAAC), <a href="https://asf.alaska.edu/">NISAR data search (Vertex)</a>.</li>
+<li id="r6">ASF DAAC, <a href="https://nisar-docs.asf.alaska.edu/gunw">NISAR GUNW product documentation</a>; product DOI <a href="https://doi.org/10.5067/NIL2GUNW-P1">10.5067/NIL2GUNW-P1</a>.</li>
+<li id="r7">ABC7 News, <a href="https://abc7news.com/story/70-earthquake-hits-chinas-tibet-killing-16-injuring-32/19969904/">“A 7.0 earthquake hits China’s Tibet, killing 16 and injuring 32”</a>, early report.</li></ol>
+<p>Contains NISAR data from NASA and ISRO, distributed by ASF DAAC. Base map: © OpenStreetMap contributors, SRTM; style © OpenTopoMap (CC-BY-SA). Map library: Leaflet.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<p><strong>NASA International Space Apps Challenge 2026</strong> — Challenge: “Dancing with SARs”. NASA does not endorse this project.</p>
+<p>Team: Batool Zafar, Muhammad Hashim, and Eihaab Ahmed Rashid, Ghulam Ishaq Khan Institute of Engineering Sciences and Technology (GIKI).</p>
+</div></footer>
+
+<button id="next" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+(function(){
+var secs=[].slice.call(document.querySelectorAll("main section"));
+var links=[].slice.call(document.querySelectorAll("nav li a"));
+var btn=document.getElementById("next");
+function cur(){var y=window.scrollY+80,i=0;secs.forEach(function(s,k){if(s.offsetTop<=y)i=k});return i}
+function upd(){
+  var i=cur();
+  links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+secs[i].id)});
+  var onLink=document.querySelector("nav li a.on");
+  if(onLink&&onLink.scrollIntoView){var u=onLink.parentNode.parentNode;u.scrollLeft=onLink.offsetLeft-20}
+  btn.classList.toggle("show",window.scrollY>220);
+}
+btn.addEventListener("click",function(e){
+  e.preventDefault();
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+window.addEventListener("scroll",upd,{passive:true});
+window.addEventListener("resize",upd);
+upd();
+
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+      } else {
+        entry.target.classList.remove("visible");
+      }
+    });
+  },{threshold:0.12,rootMargin:"0px 0px -20px 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){obs.observe(el);});
+} else {
+  document.querySelectorAll(".reveal").forEach(function(el){el.classList.add("visible");});
+}
+
+if(!window.L)return;
+var B=[[31.08353,92.12096],[34.23236,95.93416]],E=[32.381,93.780];
+var m=L.map("map-canvas",{center:E,zoom:8,minZoom:6,maxZoom:13,scrollWheelZoom:false,dragging:!L.Browser.mobile});
+L.tileLayer("https://tile.opentopomap.org/{z}/{x}/{y}.png",{maxZoom:13,attribution:"© OpenStreetMap contributors, SRTM | style © OpenTopoMap (CC-BY-SA)"}).addTo(m);
+m.on("click",function(){m.scrollWheelZoom.enable()});m.on("mouseout",function(){m.scrollWheelZoom.disable()});
+var lay={fr:L.imageOverlay("web%20images/fringes.webp",B,{opacity:.85,alt:"NISAR interferogram fringes"}),
+di:L.imageOverlay("web%20images/displacement.webp",B,{opacity:.85,alt:"NISAR line-of-sight displacement"})};
+var box=L.rectangle([[31.88,93.28],[32.88,94.28]],{color:"#E08A1E",weight:2,dashArray:"6 6",fill:false}).bindTooltip("Study area").addTo(m);
+L.circleMarker(E,{radius:9,color:"#E08A1E",weight:3,fill:false}).bindPopup("<b>Mw 7.0 epicentre</b><br>22 Oct 2026, 14:33 UTC<br>Depth 18 km (USGS)").addTo(m);
+lay.fr.addTo(m);
+function show(v){["fr","di"].forEach(function(k){if(k===v)lay[k].addTo(m);else m.removeLayer(lay[k]);
+document.getElementById("lg-"+k).hidden=(k!==v)})}
+document.querySelectorAll("input[name=lyr]").forEach(function(r){r.addEventListener("change",function(){show(r.value)})});
+document.getElementById("op").addEventListener("input",function(e){lay.fr.setOpacity(+e.target.value);lay.di.setOpacity(+e.target.value)});
+document.getElementById("box").addEventListener("change",function(e){e.target.checked?box.addTo(m):m.removeLayer(box)});
+})();
+</script>
+</body>
+</html>

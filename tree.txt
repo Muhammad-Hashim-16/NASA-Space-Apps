@@ -1,0 +1,298 @@
+[group]   complex64
+[group]   science
+[group]   science/LSAR
+[group]   science/LSAR/GUNW
+[group]   science/LSAR/GUNW/grids
+[group]   science/LSAR/GUNW/grids/frequencyA
+[DATASET] science/LSAR/GUNW/grids/frequencyA/centerFrequency  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/listOfPolarizations  shape=(1,) dtype=|S2
+[group]   science/LSAR/GUNW/grids/frequencyA/pixelOffsets
+[group]   science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH/alongTrackOffset  shape=(4320, 4392) dtype=float32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH/correlationSurfacePeak  shape=(4320, 4392) dtype=float32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH/projection  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH/slantRangeOffset  shape=(4320, 4392) dtype=float32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH/xCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH/xCoordinates  shape=(4392,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH/yCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/HH/yCoordinates  shape=(4320,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/mask  shape=(4320, 4392) dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/projection  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/xCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/xCoordinates  shape=(4392,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/yCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/pixelOffsets/yCoordinates  shape=(4320,) dtype=float64
+[group]   science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram
+[group]   science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/coherenceMagnitude  shape=(4320, 4392) dtype=float32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/connectedComponents  shape=(4320, 4392) dtype=uint16
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/ionospherePhaseScreen  shape=(4320, 4392) dtype=float32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/ionospherePhaseScreenUncertainty  shape=(4320, 4392) dtype=float32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/projection  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/unwrappedPhase  shape=(4320, 4392) dtype=float32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/xCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/xCoordinates  shape=(4392,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/yCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/yCoordinates  shape=(4320,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/mask  shape=(4320, 4392) dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/projection  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/xCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/xCoordinates  shape=(4392,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/yCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/yCoordinates  shape=(4320,) dtype=float64
+[group]   science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram
+[group]   science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH/coherenceMagnitude  shape=(17280, 17568) dtype=float32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH/projection  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH/wrappedInterferogram  shape=(17280, 17568) dtype=complex64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH/xCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH/xCoordinates  shape=(17568,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH/yCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH/yCoordinates  shape=(17280,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/mask  shape=(17280, 17568) dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/projection  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/xCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/xCoordinates  shape=(17568,) dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/yCoordinateSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/yCoordinates  shape=(17280,) dtype=float64
+[group]   science/LSAR/GUNW/metadata
+[group]   science/LSAR/GUNW/metadata/attitude
+[group]   science/LSAR/GUNW/metadata/attitude/reference
+[DATASET] science/LSAR/GUNW/metadata/attitude/reference/attitudeType  shape=() dtype=|S10
+[DATASET] science/LSAR/GUNW/metadata/attitude/reference/eulerAngles  shape=(1132, 3) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/attitude/reference/quaternions  shape=(1132, 4) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/attitude/reference/time  shape=(1132,) dtype=float64
+[group]   science/LSAR/GUNW/metadata/attitude/secondary
+[DATASET] science/LSAR/GUNW/metadata/attitude/secondary/attitudeType  shape=() dtype=|S10
+[DATASET] science/LSAR/GUNW/metadata/attitude/secondary/eulerAngles  shape=(380, 3) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/attitude/secondary/quaternions  shape=(380, 4) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/attitude/secondary/time  shape=(380,) dtype=float64
+[group]   science/LSAR/GUNW/metadata/orbit
+[group]   science/LSAR/GUNW/metadata/orbit/reference
+[DATASET] science/LSAR/GUNW/metadata/orbit/reference/interpMethod  shape=() dtype=|S7
+[DATASET] science/LSAR/GUNW/metadata/orbit/reference/orbitType  shape=() dtype=|S3
+[DATASET] science/LSAR/GUNW/metadata/orbit/reference/position  shape=(121, 3) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/orbit/reference/time  shape=(121,) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/orbit/reference/velocity  shape=(121, 3) dtype=float64
+[group]   science/LSAR/GUNW/metadata/orbit/secondary
+[DATASET] science/LSAR/GUNW/metadata/orbit/secondary/interpMethod  shape=() dtype=|S7
+[DATASET] science/LSAR/GUNW/metadata/orbit/secondary/orbitType  shape=() dtype=|S3
+[DATASET] science/LSAR/GUNW/metadata/orbit/secondary/position  shape=(45, 3) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/orbit/secondary/time  shape=(45,) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/orbit/secondary/velocity  shape=(45, 3) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/orbit/temporalBaseline  shape=() dtype=uint16
+[group]   science/LSAR/GUNW/metadata/processingInformation
+[group]   science/LSAR/GUNW/metadata/processingInformation/algorithms
+[group]   science/LSAR/GUNW/metadata/processingInformation/algorithms/coregistration
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/coregistration/coregistrationMethod  shape=() dtype=|S93
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/coregistration/crossCorrelation  shape=() dtype=|S9
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/coregistration/crossCorrelationFilling  shape=() dtype=|S13
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/coregistration/crossCorrelationFilterKernel  shape=() dtype=|S6
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/coregistration/crossCorrelationOutliers  shape=() dtype=|S13
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/coregistration/geometryCoregistration  shape=() dtype=|S54
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/coregistration/resampling  shape=() dtype=|S4
+[group]   science/LSAR/GUNW/metadata/processingInformation/algorithms/geocoding
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/geocoding/complexGeocodingInterpolation  shape=() dtype=|S8
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/geocoding/demInterpolation  shape=() dtype=|S9
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/geocoding/floatingGeocodingInterpolation  shape=() dtype=|S8
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/geocoding/integerGeocodingInterpolation  shape=() dtype=|S7
+[group]   science/LSAR/GUNW/metadata/processingInformation/algorithms/interferogramFormation
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/interferogramFormation/flatteningMethod  shape=() dtype=|S21
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/interferogramFormation/multilooking  shape=() dtype=|S38
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/interferogramFormation/wrappedInterferogramFiltering  shape=() dtype=|S9
+[group]   science/LSAR/GUNW/metadata/processingInformation/algorithms/ionosphereEstimation
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/ionosphereEstimation/ionosphereAlgorithm  shape=() dtype=|S132
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/ionosphereEstimation/ionosphereFilling  shape=() dtype=|S7
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/ionosphereEstimation/ionosphereFiltering  shape=() dtype=|S42
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/ionosphereEstimation/ionosphereOutliers  shape=(2,) dtype=object
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/ionosphereEstimation/unwrappingErrorCorrection  shape=() dtype=|S4
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/softwareVersion  shape=() dtype=|S7
+[group]   science/LSAR/GUNW/metadata/processingInformation/algorithms/unwrapping
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/unwrapping/costMode  shape=() dtype=|S6
+[group]   science/LSAR/GUNW/metadata/processingInformation/algorithms/unwrapping/preprocessing
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/unwrapping/preprocessing/wrappedPhaseFilling  shape=() dtype=|S21
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/unwrapping/preprocessing/wrappedPhaseOutliers  shape=() dtype=|S13
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/unwrapping/unwrappingAlgorithm  shape=() dtype=|S6
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/algorithms/unwrapping/unwrappingInitializer  shape=() dtype=|S3
+[group]   science/LSAR/GUNW/metadata/processingInformation/inputs
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/inputs/configFiles  shape=() dtype=|S4
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/inputs/demSource  shape=() dtype=|S1120
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/inputs/l1ReferenceSlcGranules  shape=(1,) dtype=|S94
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/inputs/l1SecondarySlcGranules  shape=(1,) dtype=|S94
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/inputs/orbitFiles  shape=(2,) dtype=|S39
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/inputs/waterMaskSource  shape=() dtype=|S824
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/common
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/common/frequencyA
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/common/frequencyA/dopplerBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/common/frequencyA/dopplerCentroid  shape=(1131, 115) dtype=float64
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/geocoding
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/geocoding/azimuthIonosphericCorrectionApplied  shape=() dtype=|S4
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/geocoding/hydrostaticTroposphericCorrectionApplied  shape=() dtype=|S5
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/geocoding/rangeIonosphericCorrectionApplied  shape=() dtype=|S4
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/geocoding/wetTroposphericCorrectionApplied  shape=() dtype=|S5
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/ionosphere
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/ionosphere/highBandBandwidth  shape=() dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/ionosphere/lowBandBandwidth  shape=() dtype=float32
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA/alongTrackSearchWindowSize  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA/alongTrackSkipWindowSize  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA/alongTrackWindowSize  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA/correlationSurfaceOversampling  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA/isOffsetsBlendingApplied  shape=() dtype=|S4
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA/slantRangeSearchWindowSize  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA/slantRangeSkipWindowSize  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/pixelOffsets/frequencyA/slantRangeWindowSize  shape=() dtype=uint32
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/reference
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/azimuthBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/dopplerCentroid  shape=(1131, 115) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/numberOfAzimuthLines  shape=() dtype=uint64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/numberOfRangeSamples  shape=() dtype=uint64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/rangeBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/slantRangeSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/slantRangeStart  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/zeroDopplerEndTime  shape=() dtype=|S29
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/zeroDopplerStartTime  shape=() dtype=|S29
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/frequencyA/zeroDopplerTimeSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/isMixedMode  shape=() dtype=|S5
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/referenceTerrainHeight  shape=(1131,) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/rfiMitigation  shape=() dtype=|S9
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/reference/rfiMitigationApplied  shape=() dtype=|S4
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/runConfigurationContents  shape=() dtype=|S21641
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/secondary
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/azimuthBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/dopplerCentroid  shape=(1131, 115) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/numberOfAzimuthLines  shape=() dtype=uint64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/numberOfRangeSamples  shape=() dtype=uint64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/rangeBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/slantRangeSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/slantRangeStart  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/zeroDopplerEndTime  shape=() dtype=|S29
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/zeroDopplerStartTime  shape=() dtype=|S29
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/frequencyA/zeroDopplerTimeSpacing  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/isMixedMode  shape=() dtype=|S5
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/referenceTerrainHeight  shape=(1131,) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/rfiMitigation  shape=() dtype=|S9
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/secondary/rfiMitigationApplied  shape=() dtype=|S4
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA/azimuthBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA/commonBandAzimuthFilterApplied  shape=() dtype=|S5
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA/commonBandRangeFilterApplied  shape=() dtype=|S5
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA/ellipsoidalFlatteningApplied  shape=() dtype=|S4
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA/numberOfAzimuthLooks  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA/numberOfRangeLooks  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA/rangeBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/unwrappedInterferogram/frequencyA/topographicFlatteningApplied  shape=() dtype=|S4
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram
+[group]   science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA/azimuthBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA/commonBandAzimuthFilterApplied  shape=() dtype=|S5
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA/commonBandRangeFilterApplied  shape=() dtype=|S5
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA/ellipsoidalFlatteningApplied  shape=() dtype=|S4
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA/numberOfAzimuthLooks  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA/numberOfRangeLooks  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA/rangeBandwidth  shape=() dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/processingInformation/parameters/wrappedInterferogram/frequencyA/topographicFlatteningApplied  shape=() dtype=|S4
+[group]   science/LSAR/GUNW/metadata/radarGrid
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/alongTrackUnitVectorX  shape=(20, 703, 715) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/alongTrackUnitVectorY  shape=(20, 703, 715) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/elevationAngle  shape=(20, 703, 715) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/groundTrackVelocity  shape=(20, 703, 715) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/heightAboveEllipsoid  shape=(20,) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/incidenceAngle  shape=(20, 703, 715) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/losUnitVectorX  shape=(20, 703, 715) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/losUnitVectorY  shape=(20, 703, 715) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/parallelBaseline  shape=(20, 703, 715) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/perpendicularBaseline  shape=(20, 703, 715) dtype=float32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/projection  shape=() dtype=uint32
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/referenceSlantRange  shape=(20, 703, 715) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/referenceZeroDopplerAzimuthTime  shape=(20, 703, 715) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/secondarySlantRange  shape=(20, 703, 715) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/secondaryZeroDopplerAzimuthTime  shape=(20, 703, 715) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/slantRangeSolidEarthTidesPhase  shape=(20, 703, 715) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/xCoordinates  shape=(715,) dtype=float64
+[DATASET] science/LSAR/GUNW/metadata/radarGrid/yCoordinates  shape=(703,) dtype=float64
+[group]   science/LSAR/identification
+[DATASET] science/LSAR/identification/boundingPolygon  shape=() dtype=|S2094
+     value: b'POLYGON ((95.7613357977996 31.9320433939426 4547.40820296456,95.6893338723403 32.1436700830514 4718.57418675739,95.6270554200637 32.3576651560222 4238.99560546713,95.55306731171 32.5688877505491 4497.45849609556,95.4755596169022 32.7793016327314 4961.65966796799,95.4052557147942 32.9914814701084 4939.03906249374,95.3294173040071 33.2023706212072 5251.51534235234,95.2611380372162 33.415111740039 5055.94677786675,95.1962001993839 33.6286937268429 4626.50195312416,95.1221437057945 33.8401261769676 4759.05859347593,95.0469583331922 34.0513266599541 4941.04980468896,94.7198912681883 33.9726034278886 5052.17626953274,94.4124634796885 33.8976861544394 4849.70263612746,94.1155828036622 33.8244843229863 4780.05468750058,93.8319613809353 33.7537704422281 4488.25292969051,93.5526656131656 33.6833790476635 4585.29492187449,93.2799991625552 33.6139365448387 4815.91503906103,93.0174723083536 33.5464065825625 4768.16845703163,92.7601626847264 33.4795749588341 4813.8549794328,92.5095143041792 33.4138623886914 4745.54541015706,92.2606062873453 33.3480019787142 5023.03466796842,92.3376931817771 33.1375192992112 5197.77392578302,92.417342623329 32.9277718831093 5048.87060547104,92.4947399867894 32.7174736016148 5102.13720703234,92.573842918307 32.5076805474926 4924.90136718211,92.6535189759893 32.2980882488765 4640.96289062638,92.7296184975026 32.0875917685108 4707.05419921773,92.8054047585559 31.8770605931206 4765.69140625084,92.8822668104908 31.6668625520549 4663.67578124965,92.9598289573667 31.4568974509158 4442.17138723071,93.0291639592953 31.2447940179717 5092.24902343882,93.2692677722611 31.3079365835044 5199.11621093613,93.514645607474 31.3719172711025 5249.85498047002,93.7739809619243 31.4389450702676 4452.89355468527,94.0276133157281 31.5038857763196 4821.33398490047,94.2951488899443 31.5717545238332 4522.71777343757,94.5706183122704 31.6409495533443 4237.37158203035,94.8399324183566 31.707910709793 5185.12792918875,95.1439355428054 31.7827262484137 4198.95605468728,95.4305329612812 31.8524577294611 5417.74203735424,95.7613357977996 31.9320433939426 4547.40820296456))'
+[DATASET] science/LSAR/identification/compositeReleaseId  shape=() dtype=|S6
+     value: b'P05023'
+[DATASET] science/LSAR/identification/diagnosticModeFlag  shape=() dtype=uint32
+     value: 0
+[DATASET] science/LSAR/identification/frameNumber  shape=() dtype=uint16
+     value: 18
+[DATASET] science/LSAR/identification/granuleId  shape=() dtype=|S123
+     value: b'NISAR_L2_UR_GUNW_033_112_A_018_034_2000_SH_20261019T225848_20261019T225923_20261031T225848_20261031T225923_P05023_F_F_J_001'
+[DATASET] science/LSAR/identification/instrumentName  shape=() dtype=|S5
+     value: b'L-SAR'
+[DATASET] science/LSAR/identification/isDithered  shape=() dtype=|S4
+     value: b'True'
+[DATASET] science/LSAR/identification/isFullFrame  shape=() dtype=|S4
+     value: b'True'
+[DATASET] science/LSAR/identification/isGeocoded  shape=() dtype=|S4
+     value: b'True'
+[DATASET] science/LSAR/identification/isMixedMode  shape=() dtype=|S5
+     value: b'False'
+[DATASET] science/LSAR/identification/isUrgentObservation  shape=() dtype=|S5
+     value: b'False'
+[DATASET] science/LSAR/identification/listOfFrequencies  shape=(1,) dtype=|S1
+[DATASET] science/LSAR/identification/lookDirection  shape=() dtype=|S4
+     value: b'Left'
+[DATASET] science/LSAR/identification/missionId  shape=() dtype=|S5
+     value: b'NISAR'
+[DATASET] science/LSAR/identification/orbitPassDirection  shape=() dtype=|S9
+     value: b'Ascending'
+[DATASET] science/LSAR/identification/platformName  shape=() dtype=|S5
+     value: b'NISAR'
+[DATASET] science/LSAR/identification/processingCenter  shape=() dtype=|S3
+     value: b'JPL'
+[DATASET] science/LSAR/identification/processingDateTime  shape=() dtype=|S19
+     value: b'2026-11-01T12:40:05'
+[DATASET] science/LSAR/identification/processingType  shape=() dtype=|S6
+     value: b'Urgent'
+[DATASET] science/LSAR/identification/productDoi  shape=() dtype=|S19
+     value: b'10.5067/NIL2GUNW-P1'
+[DATASET] science/LSAR/identification/productLevel  shape=() dtype=|S2
+     value: b'L2'
+[DATASET] science/LSAR/identification/productSpecificationVersion  shape=() dtype=|S5
+     value: b'1.5.0'
+[DATASET] science/LSAR/identification/productType  shape=() dtype=|S4
+     value: b'GUNW'
+[DATASET] science/LSAR/identification/productVersion  shape=() dtype=|S6
+     value: b'1.0.11'
+[DATASET] science/LSAR/identification/radarBand  shape=() dtype=|S1
+     value: b'L'
+[DATASET] science/LSAR/identification/referenceAbsoluteOrbitNumber  shape=() dtype=uint32
+     value: 6439
+[DATASET] science/LSAR/identification/referenceHasInputDataException  shape=() dtype=uint8
+     value: 0
+[DATASET] science/LSAR/identification/referenceIsJointObservation  shape=() dtype=|S4
+     value: b'True'
+[DATASET] science/LSAR/identification/referenceListOfObservationModes  shape=(1,) dtype=|S15
+[DATASET] science/LSAR/identification/referencePlannedDatatakeId  shape=(3,) dtype=|S18
+[DATASET] science/LSAR/identification/referencePlannedObservationId  shape=(3,) dtype=|S17
+[DATASET] science/LSAR/identification/referenceZeroDopplerEndTime  shape=() dtype=|S29
+     value: b'2026-10-19T22:59:23.999342105'
+[DATASET] science/LSAR/identification/referenceZeroDopplerStartTime  shape=() dtype=|S29
+     value: b'2026-10-19T22:58:48.000000000'
+[DATASET] science/LSAR/identification/secondaryAbsoluteOrbitNumber  shape=() dtype=uint32
+     value: 6612
+[DATASET] science/LSAR/identification/secondaryHasInputDataException  shape=() dtype=uint8
+     value: 0
+[DATASET] science/LSAR/identification/secondaryIsJointObservation  shape=() dtype=|S4
+     value: b'True'
+[DATASET] science/LSAR/identification/secondaryListOfObservationModes  shape=(1,) dtype=|S15
+[DATASET] science/LSAR/identification/secondaryPlannedDatatakeId  shape=(3,) dtype=|S18
+[DATASET] science/LSAR/identification/secondaryPlannedObservationId  shape=(3,) dtype=|S17
+[DATASET] science/LSAR/identification/secondaryZeroDopplerEndTime  shape=() dtype=|S29
+     value: b'2026-10-31T22:59:23.999342105'
+[DATASET] science/LSAR/identification/secondaryZeroDopplerStartTime  shape=() dtype=|S29
+     value: b'2026-10-31T22:58:48.000000000'
+[DATASET] science/LSAR/identification/staticLayersDataAccess  shape=() dtype=|S193
+     value: b'https://nisar-services.earthdata.nasa.gov/redirect/NISAR_L2_STATIC/NISAR_L2_UR_GUNW_033_112_A_018_034_2000_SH_20261019T225848_20261019T225923_20261031T225848_20261031T225923_P05023_F_F_J_001.h5'
+[DATASET] science/LSAR/identification/trackNumber  shape=() dtype=uint32
+     value: 112
